@@ -8,15 +8,14 @@ const useWebSocket =(url)=>{
         webSocket.current = new WebSocket(url);
 
         webSocket.current.onmessage = (event)=>{
-            console.log(event)
             setData(JSON.parse(event.data));
         }
 
-        webSocket.current.error =(error)=>{
+        webSocket.current.onerror =(error)=>{
             console.log("WebSocket Error :" + error)
         }
 
-        webSocket.current.onClose =(event)=>{
+        webSocket.current.onclose  =(event)=>{
             console.log("Web Socket Reconecting")
             setTimeout(()=>{
                 webSocket.current = new WebSocket(url);
